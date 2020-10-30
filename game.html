@@ -10,26 +10,26 @@ created before hand -- ui will react -->
     </head>
     
     <body>
-        <h1>Cal Poly CIS 3110 Number Guessing Game, Spring 2020</h1>        
-        <p> this program has selected a random number between 1 & 100. 
+        <h1>CIS 3110 - Number Guessing Game</h1>        
+        <p> This program has selected a random number between 1 & 100. 
         See if you can guess it in 10 turns or less. We will tell you if 
         your guess was too high or too low. </p>  
         <div class="form">
-            <label for="guessField"> Enter your guess: </label>
-            <input type="text" id="guessField" class="guessField">
-            <input type="submit" value="Submit your guess" class="guessSubmit">
+            <label for = "guessField"> Enter your guess: </label>
+            <input type = "text" id = "guessField" class = "guessField">
+            <input type = "submit" value = "Submit your guess" class = "guessSubmit">
         </div>
-        <div class="resultParas">
-            <p class="guesses">Test</p>
-            <p class="lastResult">Test1</p>
-            <p class="lowOrHi">Test2</p>
+        <div class = "resultParas">
+            <p class = "guesses">Test</p>
+            <p class = "lastResult">Test1</p>
+            <p class = "lowOrHigh">Test2</p>
         </div>
             
     <script>
         let randomNumber = Math.floor(Math.random() *100) + 1; 
         const guesses = document.querySelector('.guesses');
         const lastResult = document.querySelector('.lastResult');
-        const lowOrHigh = document.querySelector('.lowOrHi'); 
+        const lowOrHigh = document.querySelector('.lowOrHigh'); 
         const guessSubmit = document.querySelector('.guessSubmit');
         const guessField = document.querySelector('.guessField'); 
         let guessCount = 1; 
@@ -47,16 +47,19 @@ created before hand -- ui will react -->
                 lastResult.style.backgroundColor = 'green';
                 lowOrHigh.textContent = ''; 
                 setGameOver();
-            } else if(guessCount === 10){
+            } 
+            else if(guessCount === 10){
                 lastResult.textContent = '@@ Game over! @@';
                 lowOrHigh.textContent = ''; 
                 setGameOver();
-            } else {
+            } 
+            else {
                 lastResult.textContent = 'Wrong!';
                 lastResult.style.backgroundColor = 'red'; 
                 if(userGuess < randomNumber) {
                     lowOrHigh.textContent = 'Last guess was too low!';
-                }else if(userGuess > randomNumber) {
+                }
+                else if(userGuess > randomNumber) {
                     lowOrHigh.textContent = 'Last guess was too high!';
                 }
             }
@@ -67,8 +70,7 @@ created before hand -- ui will react -->
         }
         guessSubmit.addEventListener('click', checkGuess);
         
-        function setGameOver()
-        {
+        function setGameOver() {
             guessField.disabled = true; 
             guessSubmit.disabled = true; 
             resetButton = document.createElement('button');
@@ -77,13 +79,11 @@ created before hand -- ui will react -->
             resetButton.addEventListener('click', resetGame); 
         }
         
-        function resetGame()
-        {                                               
+        function resetGame() {                                               
             guessCount = 1;
             const resetParas = document.querySelectorAll('.resultParas p');
-            for(let i =0; i < resetParas.length; i++ )
-            {
-                resetParas[i].textContent  ='';
+            for(let i = 0; i < resetParas.length; i++ ) {
+                resetParas[i].textContent  = '';
             }
             resetButton.parentNode.removeChild(resetButton);
             guessField.disabled = false; 
